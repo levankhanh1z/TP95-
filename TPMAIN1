@@ -1,0 +1,23 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = game.Players.LocalPlayer
+
+local curCapacity = ReplicatedStorage:WaitForChild("CurCapacity")
+
+local function setHealthToZero()
+    -- Kiểm tra nếu CurCapacity đạt giá trị mong muốn
+    if curCapacity.Value >= 114000 then
+        -- Lấy Character của người chơi
+        local character = player.Character
+
+        -- Kiểm tra nếu Character và Humanoid tồn tại
+        if character and character:FindFirstChild("Humanoid") then
+            -- Đặt Health thành 0
+            character.Humanoid.Health = 0
+        end
+    end
+end
+
+-- Lặp lại việc kiểm tra và đặt Health
+while wait(1) do
+    setHealthToZero()
+end
