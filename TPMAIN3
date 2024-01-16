@@ -1,0 +1,33 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = game.Players.LocalPlayer
+
+local curCapacity = ReplicatedStorage:WaitForChild("CurCapacity")
+local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+
+local function setHealthToZero()
+    if humanoid and curCapacity.Value >= 114000 then
+        humanoid.Health = 0
+
+        -- Tạo sự kiện để thông báo rằng đã thực hiện hành động
+        local healthSetToZeroEvent = Instance.new("BindableEvent")
+        healthSetToZeroEvent.Name = "HealthSetToZeroEvent"
+        healthSetToZeroEvent.Parent = player
+
+        -- Chờ cho đến khi CurCapacity trở về 0 để lặp lại hành động
+        repeat
+            wait()
+        until curCapacity.Value == 0
+
+        -- Gọi sự kiện để thông báo rằng đã trở về 0
+        healthSetToZeroEvent:Fire()
+    end
+end
+
+-- Lắng nghe sự kiện để biết khi nào có thể lặp lại hành động
+player.HealthSetToZeroEvent.Event:Connect(function()
+    wait()  -- Đợi một khoảng thời gian ngắn trước khi lặp lại hành động
+    setHealthToZero()
+end)
+
+-- Bắt đầu kiểm tra và đặt Health
+setHealthToZero()
