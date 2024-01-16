@@ -5,7 +5,7 @@ local curCapacity = ReplicatedStorage:WaitForChild("CurCapacity")
 local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
 
 local function setHealthToZero()
-    if humanoid and curCapacity.Value >= 114000 then
+    if humanoid and curCapacity.Value >= 110 then
         humanoid.Health = 0
 
         -- Tạo sự kiện để thông báo rằng đã thực hiện hành động
