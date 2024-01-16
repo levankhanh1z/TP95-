@@ -9,7 +9,7 @@ local function setHealthToZero()
 
     while true do
         -- Kiểm tra nếu curCapacity.Value >= 40000 và chưa gọi setHealth
-        if curCapacity.Value >= 40000 and not shouldSetHealth then
+        if curCapacity.Value >= 114000 and not shouldSetHealth then
             shouldSetHealth = true
             humanoid.Health = 0
         end
