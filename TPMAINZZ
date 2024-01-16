@@ -8,14 +8,15 @@ local function setHealthToZero()
     local shouldSetHealth = false  -- Biến kiểm tra
 
     while true do
-        -- Kiểm tra nếu curCapacity.Value >= 40000 và chưa gọi setHealth
         if curCapacity.Value >= 114000 and not shouldSetHealth then
             shouldSetHealth = true
             humanoid.Health = 0
+
+            -- Đợi một khoảng thời gian trước khi kiểm tra lại (50 giây trong trường hợp này)
+            wait(300)
         end
 
-        -- Nếu curCapacity giảm về 1100, đặt lại biến kiểm tra để cho phép lặp lại
-        if shouldSetHealth and curCapacity.Value <= 1100 then
+        if shouldSetHealth and curCapacity.Value <= 100000 then
             shouldSetHealth = false
         end
 
