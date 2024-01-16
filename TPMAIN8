@@ -9,12 +9,12 @@ local function setHealthToZero()
         humanoid.Health = 0
 
         -- Chờ cho đến khi CurCapacity trở về 0 để lặp lại hành động
-        while curCapacity.Value ~= 0 do
+        repeat
             wait()
-        end
+        until curCapacity.Value <= 1100
 
         -- Đợi một khoảng thời gian ngắn trước khi lặp lại hành động
-        wait(1)
+        wait(50)
         setHealthToZero()
     end
 end
